@@ -1,5 +1,6 @@
 
 from collections import defaultdict
+
                 
                 #Graph construction
 class Graph:
@@ -28,7 +29,7 @@ class Graph:
         tg=defaultdict(list)
         for v in self.vertices:
             self.addTedge(tg,v,self.g[v])
-        print(tg)
+        print('transposed graph is -> ', tg)
                 
 
     def addTedge(self,tg,v,vlist):
@@ -39,8 +40,32 @@ class Graph:
             #Breadth First Search
 
     def bfs(self,v):
+        visited=[] # visited cannot be set, as we need to preserve the order
+        queue=[]
+        queue.append(v)
+        while queue:
+            vtx = queue.pop(0)
+            if vtx not in visited:
+                visited.append(vtx)
+                queue.extend(self.g[vtx])
+        print('bfs traversal->', visited)
+    
+    def bfs_recur(self,v):
         visited=[]
+        queue=[]
+        queue.append(v)
+        self._bfs_recur(queue,visited)
+        print('recursive bfs- >',visited)
 
+    def _bfs_recur(self,queue,visited):
+        if not queue:
+            return
+        vtx=queue.pop(0)
+        if vtx not in visited:
+            visited.append(vtx)
+            queue.extend(self.g[vtx])
+        self._bfs_recur(queue,visited)
+#---------------BFS OVER-------------------------------------------------------------
 
 
 g=Graph()
@@ -56,3 +81,5 @@ g.addEdge(4,2)
 
 g.print()
 g.transpose()
+g.bfs(0)
+g.bfs_recur(0)
