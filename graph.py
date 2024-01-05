@@ -66,6 +66,34 @@ class Graph:
             queue.extend(self.g[vtx])
         self._bfs_recur(queue,visited)
 #---------------BFS OVER-------------------------------------------------------------
+    
+    # Depth first traversal
+    
+    def dfs(self,v):
+        visited=[]
+        stack=[]
+        stack.append(v)
+        while stack:
+            vtx=stack.pop()
+            if vtx not in visited:
+                visited.append(vtx)
+                stack.extend(self.g[vtx])
+        print('dfs traversal -> ',visited)
+    
+    def dfs_recur(self,v):
+        visited=[]
+        self._dfs_recur(v,visited)
+        print('recursive dfs traversal -> ',visited)
+    
+    def _dfs_recur(self,v,visited):
+        if v not in visited:
+            visited.append(v)
+            for vx in self.g[v]:
+                self._dfs_recur(vx,visited)
+
+            #---------DFS OVER---------
+#-------------------Traversal over-----------------------------        
+
 
 
 g=Graph()
@@ -83,3 +111,5 @@ g.print()
 g.transpose()
 g.bfs(0)
 g.bfs_recur(0)
+g.dfs(0)
+g.dfs_recur(0)
