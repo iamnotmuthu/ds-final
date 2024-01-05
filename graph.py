@@ -4,7 +4,7 @@ from collections import defaultdict
                 #Graph construction
 class Graph:
     vertices=set()
-    g=defaultdict(list)
+    g=defaultdict(set)
 
     def addvertex(self,v):
         self.vertices.add(v)
@@ -13,7 +13,7 @@ class Graph:
     def addEdge(self,frm,to):
         if frm not in self.vertices or to not in self.vertices:
             raise Exception('vertex not found')
-        self.g[frm].append(to)
+        self.g[frm].add(to)
         
         
     def print(self):
@@ -35,6 +35,13 @@ class Graph:
         for vtx in vlist:
             tg[vtx].append(v)
 #-----------------------------------------------------------------------------------------------
+        # Traversals
+            #Breadth First Search
+
+    def bfs(self,v):
+        visited=[]
+
+
 
 g=Graph()
 for i in range(5):
