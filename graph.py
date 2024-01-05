@@ -94,6 +94,25 @@ class Graph:
             #---------DFS OVER---------
 #-------------------Traversal over-----------------------------        
 
+         #---  Cycle in directed graph
+    
+    def hasCycle(self,s):
+        visited =[]
+        path=[]
+        self._hasCycle(s,visited,path)
+    
+    def _hasCycle(self, s, visited, path):
+        if s not in visited:
+            visited.append(s)
+            path.append(s)
+            for vtx in self.g[s]:
+                self._hasCycle(vtx,visited,path)
+        elif s in path:
+            path.append(s)
+            print('cycle present',path)
+            exit()
+#---------------------------------------------------------------------------------------------------------
+        
 
 
 g=Graph()
@@ -113,3 +132,4 @@ g.bfs(0)
 g.bfs_recur(0)
 g.dfs(0)
 g.dfs_recur(0)
+g.hasCycle(0)
